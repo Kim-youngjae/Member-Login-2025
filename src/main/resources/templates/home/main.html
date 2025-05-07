@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/template/layout/base :: common_header(~{::title})">
+    <title>Main Page</title>
+</head>
+<body>
+<h1>메인화면</h1>
+
+
+
+<button type="button" class="btn btn-primary">Primary</button>
+
+<div>로그인한 사용자: [[ ${email} ]]</div>
+
+<button onclick="location.href='/'" class="btn btn-primary">홈화면</button>
+<button onclick="location.href='/user/test1'" class="btn btn-primary">일반페이지</button>
+<button onclick="location.href='/admin/test2'" class="btn btn-primary">관리자페이지</button>
+</body>
+</html>

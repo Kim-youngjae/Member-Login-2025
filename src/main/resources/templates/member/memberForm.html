@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/template/layout/base :: common_header(~{::title})">
+    <title>회원가입 Page</title>
+</head>
+<body>
+
+<form id="memberForm" action="/api/members/add" method="post" class="form-example">
+    <div class="form-example">
+        <label for="username">이름</label>
+        <input type="text" name="username" id="username" required />
+    </div>
+
+    <div class="form-example">
+        <label for="email">이메일</label>
+        <input type="email" name="email" id="email" required />
+    </div>
+
+    <div class="form-example">
+        <label for="password">비밀번호</label>
+        <input type="password" name="password" id="password" required />
+    </div>
+    <div class="form-example">
+        <button class="btn btn-primary" type="submit">회원가입</button>
+    </div>
+</form>
+
+</body>
+</html>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    document.getElementById('memberForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const data = {
+            username: document.getElementById('username').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        };
+
+        axios.post('/api/members/add', data)
+            .then(() => {
+                alert('회원 등록 성공');
+                location.href = "/";
+            })
+            .catch(err => {
+                alert('에러: ' + err.response.data.message);
+            });
+    });
+</script>

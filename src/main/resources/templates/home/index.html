@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/template/layout/base :: common_header(~{::title})">
+    <title>HOME PAGE</title>
+</head>
+<body>
+<h1>home page</h1>
+<button type="button" class="btn btn-primary" onclick="location.href='/members/add'">회원가입</button>
+<button type="button" class="btn btn-primary" onclick="location.href='/login'">로그인 화면</button>
+<button type="button" class="btn btn-primary" onclick="location.href='/main'">메인화면</button>
+</body>
+</html>
