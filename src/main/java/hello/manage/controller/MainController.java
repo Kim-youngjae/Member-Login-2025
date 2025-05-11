@@ -1,7 +1,6 @@
 package hello.manage.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +12,7 @@ public class MainController {
 
     /**
      * 홈 페이지
+     *
      * @return
      */
     @GetMapping("/")
@@ -22,7 +22,8 @@ public class MainController {
 
     /**
      * 메인 페이지 -> 로그인 후 들어가는 화면
-      * @return
+     *
+     * @return
      */
     @GetMapping("/main")
     public String homePage(Authentication authentication, Model model) {
@@ -33,6 +34,7 @@ public class MainController {
 
     /**
      * 로그인 페이지
+     *
      * @return
      */
     @GetMapping("/login")
@@ -40,7 +42,7 @@ public class MainController {
         return "home/login";
     }
 
-//    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+    //    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/user/test1")
     public String test1(Authentication authentication, Model model) {
         String email = authentication.getName();
@@ -51,7 +53,7 @@ public class MainController {
         return "test1";
     }
 
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    //    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/admin/test2")
     public String test2(Authentication authentication, Model model) {
         String email = authentication.getName();

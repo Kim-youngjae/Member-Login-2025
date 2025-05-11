@@ -24,7 +24,7 @@ public class MemberApiController {
         Member savedMember = memberService.save(memberAddDto);
 
         if (savedMember == null) {
-            return new  ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return new ResponseEntity<>(HttpStatus.OK);

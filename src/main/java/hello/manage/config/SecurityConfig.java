@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,7 +32,7 @@ public class SecurityConfig {
                                         .requestMatchers(PathRequest.toH2Console()).permitAll()
                                         // 정적 리소스에 대한 접근 허용 (공통 위치 모두 포함)
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                        .requestMatchers("/", "/login", "/error", "/members/add", "/api/**" ).permitAll()
+                                        .requestMatchers("/", "/login", "/error", "/members/add", "/api/**").permitAll()
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                         .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                                         .anyRequest().authenticated()
@@ -50,6 +49,7 @@ public class SecurityConfig {
 
     /**
      * 회원가입, 로그인 시 넘어온 비밀번호를 단방향 암호화를 하기 위한 빈 등록
+     *
      * @return
      */
     @Bean
@@ -74,8 +74,8 @@ public class SecurityConfig {
         AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
 
         builder
-            .userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder);
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder);
 
         return builder.build();
     }
