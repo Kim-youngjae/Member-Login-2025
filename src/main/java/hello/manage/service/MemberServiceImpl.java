@@ -2,7 +2,7 @@ package hello.manage.service;
 
 import hello.manage.domain.Member;
 import hello.manage.domain.RoleType;
-import hello.manage.dto.member.MemberAddDto;
+import hello.manage.web.dto.member.MemberAddDto;
 import hello.manage.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

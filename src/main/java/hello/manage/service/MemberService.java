@@ -1,7 +1,7 @@
 package hello.manage.service;
 
 import hello.manage.domain.Member;
-import hello.manage.dto.member.MemberAddDto;
+import hello.manage.web.dto.member.MemberAddDto;
 import org.springframework.stereotype.Service;
 
 @Service

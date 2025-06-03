@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/template/layout/base :: common_header(~{::title})">
+<head th:replace="~{/template/layout/base :: common_header(~{::title})}">
     <title>로그인페이지</title>
 </head>
 <body>
 <h1>로그인 페이지</h1>
 
 <form id="loginForm" action="" method="post" class="form-example">
+1111
     <div class="form-example">
         <label for="email">Enter your email: </label>
-        <input type="email" name="email" id="email" required/>
+        <input type="email" class="form-control form-control-lg" id="email" name="email" required/>
     </div>
     <div class="form-example">
         <label for="password">Enter your password: </label>
@@ -19,7 +20,6 @@
         <button type="submit" class="btn btn-primary">Login</button>
     </div>
 </form>
-
 
 <button onclick="location.href='/'" class="btn btn-primary">홈화면</button>
 </body>

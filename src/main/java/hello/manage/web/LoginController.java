@@ -1,6 +1,6 @@
-package hello.manage.controller;
+package hello.manage.web;
 
-import hello.manage.dto.member.LoginDto;
+import hello.manage.web.dto.member.LoginDto;
 import hello.manage.service.LoginService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

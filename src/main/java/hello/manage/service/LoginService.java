@@ -1,6 +1,6 @@
 package hello.manage.service;
 
-import hello.manage.dto.member.LoginDto;
+import hello.manage.web.dto.member.LoginDto;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

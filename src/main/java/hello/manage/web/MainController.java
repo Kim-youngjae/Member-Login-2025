@@ -1,10 +1,13 @@
-package hello.manage.controller;
+package hello.manage.web;
 
+import hello.manage.web.dto.member.LoginDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Slf4j
 @Controller
@@ -17,7 +20,7 @@ public class MainController {
      */
     @GetMapping("/")
     public String index() {
-        return "/home/index";
+        return "home/index";
     }
 
     /**
@@ -38,11 +41,11 @@ public class MainController {
      * @return
      */
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(@ModelAttribute LoginDto loginDto) {
         return "home/login";
     }
 
-    //    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/user/test1")
     public String test1(Authentication authentication, Model model) {
         String email = authentication.getName();
@@ -53,7 +56,7 @@ public class MainController {
         return "test1";
     }
 
-    //    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/admin/test2")
     public String test2(Authentication authentication, Model model) {
         String email = authentication.getName();

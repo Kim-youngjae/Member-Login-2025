@@ -1,4 +1,4 @@
-package hello.manage.dto.member;
+package hello.manage.web.dto.member;
 
 import lombok.Getter;
 import lombok.Setter;

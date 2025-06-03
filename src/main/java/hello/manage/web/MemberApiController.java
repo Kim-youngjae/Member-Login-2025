@@ -1,7 +1,7 @@
-package hello.manage.controller;
+package hello.manage.web;
 
 import hello.manage.domain.Member;
-import hello.manage.dto.member.MemberAddDto;
+import hello.manage.web.dto.member.MemberAddDto;
 import hello.manage.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
