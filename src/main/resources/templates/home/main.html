@@ -4,8 +4,101 @@
     <title>Main Page</title>
 </head>
 <body>
-<h1>메인화면</h1>
 
+<!-- 상단 헤더 -->
+<header class="p-3 mb-3 border-bottom sticky-top">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <!-- 메뉴들 -->
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/main" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
+            </ul>
+
+            <!-- 검색 바 -->
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search"
+                       class="form-control"
+                       placeholder="Search..."
+                       aria-label="Search">
+            </form>
+
+            <!-- 사용자 정보에 따라 로그인 로그아웃 버튼 렌더링 -->
+            <div class="text-end" sec:authorize="isAnonymous()">
+                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='/login'">Login</button>
+                <button type="button" class="btn btn-warning" onclick="location.href='/members/add'">Sign-up</button>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <button>로그아웃</button>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div class="main-contents-container" style="height: 1000vh">
+    <div class="container px-4 py-5"><h2 class="pb-2 border-bottom">Features with title</h2>
+        <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+            <div class="col d-flex flex-column align-items-start gap-2">
+                <h2 class="fw-bold text-body-emphasis">
+                    Left-aligned title explaining these awesome features
+                </h2>
+                <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading. We'll add
+                    onto it with another sentence and probably just keep going until we run out of words.
+                </p>
+                <a href="#" class="btn btn-primary btn-lg">Primary button</a>
+            </div>
+
+            <div class="col">
+                <div class="row row-cols-1 row-cols-sm-2 g-4">
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div class="d-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
+                             style="width: 40px; height: 40px;">
+                            <i class="bi bi-arrow-up-right-circle"></i>
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Featured title</h4>
+                        <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div class="d-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
+                             style="width: 40px; height: 40px;">
+                            <i class="bi bi-arrow-up-right-circle"></i>
+                        </div>
+
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Featured title</h4>
+                        <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div class="d-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
+                             style="width: 40px; height: 40px;">
+                            <i class="bi bi-arrow-up-right-circle"></i>
+                        </div>
+
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Featured title</h4>
+                        <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div class="d-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
+                             style="width: 40px; height: 40px;">
+                            <i class="bi bi-arrow-up-right-circle"></i>
+                        </div>
+
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Featured title</h4>
+                        <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <button type="button" class="btn btn-primary">Primary</button>
 

@@ -5,35 +5,42 @@
 </head>
 <body>
 
-<header class="p-3 text-bg-dark sticky-top">
+<!-- 상단 헤더 -->
+<header class="p-3 mb-3 border-bottom sticky-top">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
+            <!-- 메뉴들 -->
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/main" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                <li><a href="/main" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
             </ul>
+
+            <!-- 검색 바 -->
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <input type="search"
-                       class="form-control form-control-dark text-bg-dark"
+                       class="form-control"
                        placeholder="Search..."
                        aria-label="Search">
             </form>
 
-            <div class="text-end">
+            <!-- 사용자 정보에 따라 로그인 로그아웃 버튼 렌더링 -->
+            <div class="text-end" sec:authorize="isAnonymous()">
                 <button type="button" class="btn btn-outline-light me-2" onclick="location.href='/login'">Login</button>
                 <button type="button" class="btn btn-warning" onclick="location.href='/members/add'">Sign-up</button>
             </div>
+            <div sec:authorize="isAuthenticated()">
+                <button>로그아웃</button>
+            </div>
+
         </div>
     </div>
 </header>
 
-<div style="height: 1000vh">
-    contents
-</div>
+<!-- 점보트론 -->
+<div class="p-5 mb-4 bg-body-tertiary rounded-3"> <div class="container-fluid py-5"> <h1 class="display-5 fw-bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">맞춤형 점보트론</font></font></h1> <p class="col-md-8 fs-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">여러 유틸리티를 사용하여 이전 버전의 Bootstrap과 마찬가지로 이 대형 배너를 만들 수 있습니다. 아래 예시를 참고하여 원하는 대로 리믹스하고 스타일을 변경하는 방법을 확인해 보세요.</font></font></p> <button class="btn btn-primary btn-lg" type="button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">예제 버튼</font></font></button> </div> </div>
 
 </body>
 </html>
