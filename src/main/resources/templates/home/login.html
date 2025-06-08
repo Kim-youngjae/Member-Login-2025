@@ -1,17 +1,19 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/template/layout/base :: common_header(~{::title})}">
-    <title>로그인페이지</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
+<head th:replace="~{template/layout/base :: common_header(~{::extra_head})}">
+    <th:block th:fragment="extra_head">
+        <title>로그인</title>
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
 
-        .login-container {
-            height: 100vh; /* 뷰포트 높이 100% */
-        }
-    </style>
+            .login-container {
+                height: 100vh; /* 뷰포트 높이 100% */
+            }
+        </style>
+    </th:block>
 </head>
 <body>
 
@@ -44,10 +46,6 @@
 
 </div>
 
-
-
-<button onclick="location.href='/'" class="btn btn-primary">홈화면</button>
-
 <script th:replace="~{template/fragment/footer :: axiosScript}"></script>
 <script>
 
@@ -55,12 +53,19 @@
     document.getElementById('loginForm').addEventListener('submit', function (e) {
         e.preventDefault(); // 폼제출 막기
 
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
         const data = {
             email: document.getElementById('email').value,
             password: document.getElementById('password').value
         }
 
-        axios.post('/api/login', data)
+        axios.post('/api/login', data, {
+            headers: {
+                [csrfHeader] : csrfToken
+            }
+        })
             .then((response) => {
                 console.log(response);
                 alert('로그인 성공');

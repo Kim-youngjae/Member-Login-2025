@@ -1,7 +1,9 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/template/layout/base :: common_header(~{::title})">
-    <title>HOME PAGE</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{template/layout/base :: common_header(~{::extra_head})}">
+    <th:block th:fragment="extra_head">
+        <title>홈 페이지</title>
+    </th:block>
 </head>
 <body>
 
@@ -12,10 +14,10 @@
 
             <!-- 메뉴들 -->
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/main" class="nav-link px-2 link-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
+                <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">메뉴1</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">메뉴2</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">메뉴3</a></li>
             </ul>
 
             <!-- 검색 바 -->
@@ -28,11 +30,11 @@
 
             <!-- 사용자 정보에 따라 로그인 로그아웃 버튼 렌더링 -->
             <div class="text-end" sec:authorize="isAnonymous()">
-                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='/login'">Login</button>
+                <button type="button" class="btn btn-outline-success me-2" onclick="location.href='/login'">Login</button>
                 <button type="button" class="btn btn-warning" onclick="location.href='/members/add'">Sign-up</button>
             </div>
             <div sec:authorize="isAuthenticated()">
-                <button>로그아웃</button>
+                <button type="button" class="btn btn-outline-danger" id="logoutButton">로그아웃</button>
             </div>
 
         </div>
@@ -40,7 +42,56 @@
 </header>
 
 <!-- 점보트론 -->
-<div class="p-5 mb-4 bg-body-tertiary rounded-3"> <div class="container-fluid py-5"> <h1 class="display-5 fw-bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">맞춤형 점보트론</font></font></h1> <p class="col-md-8 fs-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">여러 유틸리티를 사용하여 이전 버전의 Bootstrap과 마찬가지로 이 대형 배너를 만들 수 있습니다. 아래 예시를 참고하여 원하는 대로 리믹스하고 스타일을 변경하는 방법을 확인해 보세요.</font></font></p> <button class="btn btn-primary btn-lg" type="button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">예제 버튼</font></font></button> </div> </div>
+<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">
+            <span style="vertical-align: inherit;">
+                <span style="vertical-align: inherit;">로그인 연습 토이 프로젝트.</span>
+            </span>
+        </h1>
+
+        <p class="col-md-8 fs-4">
+            <span style="vertical-align: inherit;">
+                <span style="vertical-align: inherit;">
+                    이곳은 누구나 접근이 가능한 welcome 페이지 입니다.
+                </span>
+            </span>
+        </p>
+        <button class="btn btn-primary btn-lg" type="button">
+            <span style="vertical-align: inherit;">
+                <span style="vertical-align: inherit;">예제 버튼</span>
+            </span>
+        </button>
+    </div>
+</div>
+
+
+<script th:replace="~{template/fragment/footer :: axiosScript}"></script>
+<script>
+
+
+    document.getElementById('logoutButton')?.addEventListener('click', function () {
+        if (confirm('로그아웃 하시겠습니까?')) {
+            const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+            const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+            axios.post('api/logout', null, {
+                headers: {
+                    [csrfHeader]: csrfToken
+                }
+            })
+                .then((response) => {
+                    if (response.status == 200) {
+                        location.href = '/';
+                    }
+                })
+                .catch(() => {
+                    alert('로그아웃 실패');
+                });
+        }
+    });
+
+</script>
 
 </body>
 </html>

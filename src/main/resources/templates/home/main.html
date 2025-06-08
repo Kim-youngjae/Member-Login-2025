@@ -1,7 +1,9 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/template/layout/base :: common_header(~{::title})">
-    <title>Main Page</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{template/layout/base :: common_header(~{::extra_head})}">
+    <th:block th:fragment="extra_head">
+        <title>메인 페이지</title>
+    </th:block>
 </head>
 <body>
 
@@ -32,7 +34,7 @@
                 <button type="button" class="btn btn-warning" onclick="location.href='/members/add'">Sign-up</button>
             </div>
             <div sec:authorize="isAuthenticated()">
-                <button>로그아웃</button>
+                <button type="button" class="btn btn-outline-danger" id="logoutButton">로그아웃</button>
             </div>
 
         </div>
@@ -40,7 +42,7 @@
 </header>
 
 <div class="main-contents-container" style="height: 1000vh">
-    <div class="container px-4 py-5"><h2 class="pb-2 border-bottom">Features with title</h2>
+    <div class="container px-4 py-5"><h2 class="pb-2 border-bottom">메인 페이지 입니다.</h2>
         <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
             <div class="col d-flex flex-column align-items-start gap-2">
                 <h2 class="fw-bold text-body-emphasis">
@@ -107,5 +109,33 @@
 <button onclick="location.href='/'" class="btn btn-primary">홈화면</button>
 <button onclick="location.href='/user/test1'" class="btn btn-primary">일반페이지</button>
 <button onclick="location.href='/admin/test2'" class="btn btn-primary">관리자페이지</button>
+
+<script th:replace="~{template/fragment/footer :: axiosScript}"></script>
+<script>
+
+
+    document.getElementById('logoutButton')?.addEventListener('click', function () {
+        if (confirm('로그아웃 하시겠습니까?')) {
+            const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+            const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+            axios.post('api/logout', null, {
+                headers: {
+                    [csrfHeader]: csrfToken
+                }
+            })
+                .then((response) => {
+                    if (response.status == 200) {
+                        location.href = '/';
+                    }
+                })
+                .catch(() => {
+                    alert('로그아웃 실패');
+                });
+        }
+    });
+
+</script>
+
 </body>
 </html>
