@@ -19,9 +19,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf((csrf) ->
-                        csrf.disable()
-                )
+                /*.csrf((csrf) ->
+                        csrf.disable() // 완전한 jwt 토큰 기반 rest api 기반이라면 disable() 해도 됨
+                        // 아무것도 없다면 기본이 enable()
+                )*/
                 .headers((headerConfig) ->
                         headerConfig.frameOptions(frameOptionsConfig ->
                                 frameOptionsConfig.disable()
