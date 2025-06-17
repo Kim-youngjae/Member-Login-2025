@@ -27,8 +27,12 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
+    public String getUsername() { // principal의 getName() -> 로그인 식별자인 email을 가져오는 것과 동일함
         return member.getEmail();
+    }
+
+    public String getRealName() {
+        return member.getName();
     }
 
     @Override

@@ -42,17 +42,23 @@
     </div>
 </header>
 
-<div class="main-contents-container" style="height: 1000vh">
+<div class="main-contents-container" style="height: 100vh">
     <div class="container px-4 py-5"><h2 class="pb-2 border-bottom">메인 페이지 입니다.</h2>
         <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
             <div class="col d-flex flex-column align-items-start gap-2">
                 <h2 class="fw-bold text-body-emphasis">
                     Left-aligned title explaining these awesome features
                 </h2>
-                <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading. We'll add
-                    onto it with another sentence and probably just keep going until we run out of words.
+                <p class="text-body-secondary" th:object="${member}">
+                    [[ *{username} ]]님 반갑습니다.
+                    [[ ${realName} ]]
+                    로그인한 사용자: [[ ${email} ]]
                 </p>
-                <a href="#" class="btn btn-primary btn-lg">Primary button</a>
+
+                <button onclick="location.href='/'" class="btn btn-primary">홈화면</button>
+                <button onclick="location.href='/user/test1'" class="btn btn-primary">일반페이지</button>
+                <button onclick="location.href='/admin/test2'" class="btn btn-primary">관리자페이지</button>
+
             </div>
 
             <div class="col">
@@ -103,17 +109,8 @@
     </div>
 </div>
 
-<button type="button" class="btn btn-primary">Primary</button>
-
-<div>로그인한 사용자: [[ ${email} ]]</div>
-
-<button onclick="location.href='/'" class="btn btn-primary">홈화면</button>
-<button onclick="location.href='/user/test1'" class="btn btn-primary">일반페이지</button>
-<button onclick="location.href='/admin/test2'" class="btn btn-primary">관리자페이지</button>
-
 <script th:replace="~{template/fragment/footer :: axiosScript}"></script>
 <script>
-
 
     document.getElementById('logoutButton')?.addEventListener('click', function () {
         if (confirm('로그아웃 하시겠습니까?')) {
