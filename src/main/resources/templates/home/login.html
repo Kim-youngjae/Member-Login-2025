@@ -1,19 +1,18 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{template/layout/base :: common_header(~{::extra_head})}">
-    <th:block th:fragment="extra_head">
-        <title>로그인</title>
-        <style>
-            html, body {
-                height: 100%;
-                margin: 0;
-            }
+<head>
+    <th:block th:replace="~{template/fragment/header::main_header}"></th:block>
+    <title>로그인</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
 
-            .login-container {
-                height: 100vh; /* 뷰포트 높이 100% */
-            }
-        </style>
-    </th:block>
+        .login-container {
+            height: 100vh; /* 뷰포트 높이 100% */
+        }
+    </style>
 </head>
 <body>
 

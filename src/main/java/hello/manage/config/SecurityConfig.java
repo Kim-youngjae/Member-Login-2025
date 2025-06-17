@@ -34,8 +34,8 @@ public class SecurityConfig {
                                         // 정적 리소스에 대한 접근 허용 (공통 위치 모두 포함)
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .requestMatchers("/", "/login", "/error", "/members/add", "/api/**").permitAll()
-                                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                                        .requestMatchers("/members/admin/**").hasRole("ADMIN")
+                                        .requestMatchers("/members/user/**").hasAnyRole("USER", "ADMIN")
                                         .anyRequest().authenticated()
                         //.requestMatchers("/main/**").hasRole(Role.USER.name()) -> 이렇게 나중에는 권한에 따라 부여할 경로도 추가할 수 있다.
                 )
