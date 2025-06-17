@@ -1,4 +1,4 @@
-package hello.manage.domain;
+package hello.manage.user.domain;
 
 public enum RoleType {
     USER, // 일반사용자

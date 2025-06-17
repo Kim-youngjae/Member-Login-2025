@@ -1,6 +1,6 @@
-package hello.manage.web;
+package hello.manage;
 
-import hello.manage.web.dto.member.LoginDto;
+import hello.manage.user.web.dto.LoginDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;

@@ -1,7 +1,7 @@
-package hello.manage.web;
+package hello.manage.user.web;
 
-import hello.manage.service.LoginService;
-import hello.manage.web.dto.member.LoginDto;
+import hello.manage.user.service.LoginService;
+import hello.manage.user.web.dto.LoginDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;

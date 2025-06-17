@@ -1,4 +1,4 @@
-package hello.manage.domain;
+package hello.manage.user.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

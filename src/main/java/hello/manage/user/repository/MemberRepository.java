@@ -1,6 +1,6 @@
-package hello.manage.repository;
+package hello.manage.user.repository;
 
-import hello.manage.domain.Member;
+import hello.manage.user.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

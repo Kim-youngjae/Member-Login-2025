@@ -1,7 +1,7 @@
 package hello.manage.config;
 
-import hello.manage.domain.Member;
-import hello.manage.repository.MemberRepository;
+import hello.manage.user.domain.Member;
+import hello.manage.user.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

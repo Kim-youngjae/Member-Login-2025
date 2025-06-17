@@ -1,4 +1,4 @@
-package hello.manage.web;
+package hello.manage.user.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

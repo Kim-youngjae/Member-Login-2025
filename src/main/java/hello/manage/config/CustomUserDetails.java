@@ -1,6 +1,6 @@
 package hello.manage.config;
 
-import hello.manage.domain.Member;
+import hello.manage.user.domain.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
