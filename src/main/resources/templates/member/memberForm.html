@@ -39,7 +39,14 @@
             password: document.getElementById('password').value
         };
 
-        axios.post('/api/members/add', data)
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+        axios.post('/api/members/add', data, {
+            headers: {
+                [csrfHeader]: csrfToken
+            }
+        })
             .then(() => {
                 alert('회원 등록 성공');
                 location.href = "/";

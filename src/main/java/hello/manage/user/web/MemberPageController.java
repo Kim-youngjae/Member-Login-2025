@@ -20,7 +20,7 @@ public class MemberPageController {
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/admin/dashboard")
-    public String test2(Authentication authentication, Model model) {
+    public String goAdminDashboardPage(Authentication authentication, Model model) {
         String email = authentication.getName();
         log.debug("isAuthenticated(): {}", authentication.isAuthenticated());
         log.debug("getAuthorities(): {}", authentication.getAuthorities());

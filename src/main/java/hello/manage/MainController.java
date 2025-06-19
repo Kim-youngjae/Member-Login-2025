@@ -55,15 +55,4 @@ public class MainController {
         model.addAttribute("email", email);
         return "test1";
     }
-
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping("/admin/test2")
-    public String test2(Authentication authentication, Model model) {
-        String email = authentication.getName();
-        log.debug("isAuthenticated(): {}", authentication.isAuthenticated());
-        log.debug("getAuthorities(): {}", authentication.getAuthorities());
-
-        model.addAttribute("email", email);
-        return "test2";
-    }
 }

@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
                 .password(passwordEncoder.encode(memberAddDto.getPassword()))
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
-                .role(RoleType.USER)
+                .role(RoleType.ADMIN)
                 .build();
 
         Member savedMember = memberRepository.save(member);
