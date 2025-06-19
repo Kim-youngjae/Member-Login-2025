@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/template/layout/base :: common_header(~{::title})">
+<head>
+    <th:block th:replace="~{template/fragment/header::main_header}"></th:block>
     <title>회원가입 Page</title>
 </head>
 <body>
