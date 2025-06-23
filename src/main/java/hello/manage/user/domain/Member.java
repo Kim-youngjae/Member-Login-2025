@@ -17,7 +17,7 @@ public class Member {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String memberName;
 
     @Column(nullable = false)
     private String email;

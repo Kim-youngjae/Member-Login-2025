@@ -15,7 +15,7 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/main" class="nav-link px-2 link-secondary">Home</a></li>
 
-                <li><a sec:authorize="hasRole('ADMIN')" href="/admin/dashboard" class="nav-link px-2 link-body-emphasis">관리자페이지</a></li>
+                <li><a sec:authorize="hasRole('ADMIN')" href="/members/admin/dashboard" class="nav-link px-2 link-body-emphasis">관리자페이지</a></li>
 
                 <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
                 <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
@@ -50,7 +50,7 @@
                     Left-aligned title explaining these awesome features
                 </h2>
                 <p class="text-body-secondary" th:object="${member}">
-                    [[ *{username} ]]님 반갑습니다.
+                    [[ *{memberName} ]]님 반갑습니다.
                     [[ ${realName} ]]
                     로그인한 사용자: [[ ${email} ]]
                 </p>

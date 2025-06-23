@@ -9,7 +9,7 @@ public class MemberAddDto {
     /**
      * 회원 가입에 사용되는 dto
      */
-    private String name;
+    private String memberName;
     private String password;
     private String email;
 }

@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
     public Member save(MemberAddDto memberAddDto) {
 
         Member member = Member.builder()
-                .name(memberAddDto.getName())
+                .memberName(memberAddDto.getMemberName())
                 .email(memberAddDto.getEmail())
                 .password(passwordEncoder.encode(memberAddDto.getPassword()))
                 .createdAt(LocalDateTime.now())

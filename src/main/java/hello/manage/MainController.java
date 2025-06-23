@@ -1,8 +1,8 @@
 package hello.manage;
 
+import hello.manage.config.CustomUserDetails;
 import hello.manage.user.web.dto.LoginDto;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,8 +30,12 @@ public class MainController {
      */
     @GetMapping("/main")
     public String homePage(Authentication authentication, Model model) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        model.addAttribute("member", userDetails.getMember());
+
         String email = authentication.getName(); // 또는 CustomUserDetails → authentication.getPrincipal()
         model.addAttribute("email", email);
+
         return "home/main";
     }
 
@@ -43,16 +47,5 @@ public class MainController {
     @GetMapping("/login")
     public String loginPage(@ModelAttribute LoginDto loginDto) {
         return "home/login";
-    }
-
-    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
-    @GetMapping("/user/test1")
-    public String test1(Authentication authentication, Model model) {
-        String email = authentication.getName();
-        log.debug("isAuthenticated(): {}", authentication.isAuthenticated());
-        log.debug("getAuthorities(): {}", authentication.getAuthorities());
-
-        model.addAttribute("email", email);
-        return "test1";
     }
 }

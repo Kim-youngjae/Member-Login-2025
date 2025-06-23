@@ -8,8 +8,8 @@
 
 <form id="memberForm" action="/api/members/add" method="post" class="form-example">
     <div class="form-example">
-        <label for="username">이름</label>
-        <input type="text" name="username" id="username" required/>
+        <label for="member-name">이름</label>
+        <input type="text" name="member-name" id="member-name" required/>
     </div>
 
     <div class="form-example">
@@ -34,7 +34,7 @@
         e.preventDefault();
 
         const data = {
-            name: document.getElementById('username').value,
+            memberName: document.getElementById('member-name').value,
             email: document.getElementById('email').value,
             password: document.getElementById('password').value
         };
