@@ -14,9 +14,6 @@
             <!-- 메뉴들 -->
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">메뉴1</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">메뉴2</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">메뉴3</a></li>
             </ul>
 
             <!-- 검색 바 -->
@@ -35,7 +32,6 @@
             <div sec:authorize="isAuthenticated()">
                 <button type="button" class="btn btn-outline-danger" id="logoutButton">로그아웃</button>
             </div>
-
         </div>
     </div>
 </header>
@@ -56,18 +52,13 @@
                 </span>
             </span>
         </p>
-        <button class="btn btn-primary btn-lg" type="button">
-            <span style="vertical-align: inherit;">
-                <span style="vertical-align: inherit;">예제 버튼</span>
-            </span>
-        </button>
+
     </div>
 </div>
 
 
 <script th:replace="~{template/fragment/footer :: axiosScript}"></script>
 <script>
-
 
     document.getElementById('logoutButton')?.addEventListener('click', function () {
         if (confirm('로그아웃 하시겠습니까?')) {
