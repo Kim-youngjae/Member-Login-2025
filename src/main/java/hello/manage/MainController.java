@@ -1,6 +1,7 @@
 package hello.manage;
 
 import hello.manage.config.CustomUserDetails;
+import hello.manage.user.domain.Member;
 import hello.manage.user.web.dto.LoginDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -30,11 +31,15 @@ public class MainController {
      */
     @GetMapping("/main")
     public String homePage(Authentication authentication, Model model) {
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        model.addAttribute("member", userDetails.getMember());
 
-        String email = authentication.getName(); // 또는 CustomUserDetails → authentication.getPrincipal()
-        model.addAttribute("email", email);
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        Member member = userDetails.getMember();
+
+        model.addAttribute("member", member);
+        model.addAttribute("memberId", member.getId());
+
+        //String email = authentication.getName(); // 또는 CustomUserDetails → authentication.getPrincipal()
+        //model.addAttribute("email", email);
 
         return "home/main";
     }

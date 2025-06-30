@@ -6,39 +6,63 @@
 </head>
 </head>
 <body>
-<h1>관리자만 들어올 수 있는 페이지</h1>
 
-<button onclick="location.href='/'" class="btn btn-primary">홈화면</button>
+<!-- 상단 헤더 -->
+<header class="p-3 mb-3 border-bottom sticky-top">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <!-- 메뉴들 -->
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/main" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a sec:authorize="hasAnyRole('ADMIN', 'USER')" th:href="@{/members/{memberId}(memberId=${memberId})}" class="nav-link px-2 link-body-emphasis">내 정보</a></li>
+            </ul>
+
+            <!-- 검색 바 -->
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search"
+                       class="form-control"
+                       placeholder="Search..."
+                       aria-label="Search">
+            </form>
+
+            <!-- 사용자 정보에 따라 로그인 로그아웃 버튼 렌더링 -->
+            <div class="text-end" sec:authorize="isAnonymous()">
+                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='/login'">Login</button>
+                <button type="button" class="btn btn-warning" onclick="location.href='/members/add'">Sign-up</button>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <button type="button" class="btn btn-outline-danger" id="logoutButton">로그아웃</button>
+            </div>
+
+        </div>
+    </div>
+</header>
 
 
-<!-- 인증되지 않은(로그인하지 않은) 사용자에게 보임 -->
-<button sec:authorize="isAnonymous()" type="button" onclick="location.href='/admin/loginView'">로그인</button>
-<!-- 인증된(로그인한) 사용자에게 보임 -->
-<button sec:authorize="isAuthenticated()" type="button" onclick="location.href='/admin/logout'">로그아웃</button>
+<div class="member-table-container d-flex justify-content-center align-items-center vh-100">
 
-<!-- ROLE_ADMIN 권한을 가지고 있다면 보임 -->
-<div sec:authorize="hasRole('ADMIN')">ROLE_ADMIN 권한이 있습니다.</div>
-<!-- ROLE_SUB_ADMIN 권한을 가지고 있다면 보임 -->
-<div sec:authorize="hasRole('SUB_ADMIN')">ROLE_SUB_ADMIN 권한이 있습니다.</div>
-<!-- ROLE_USER 권한을 가지고 있다면 보임 -->
-<div sec:authorize="hasRole('USER')">ROLE_USER 권한이 있습니다.</div>
-<!-- ROLE_ADMIN 혹은 ROLE_SUB_ADMIN 권한을 가지고 있다면 보임 -->
-<div sec:authorize="hasAnyRole('ADMIN, SUB_ADMIN')">ROLE_ADMIN 혹은 ROLE_SUB_ADMIN 권한이 있습니다.</div>
+    <table class="table table-bordered shadow" style="width: 600px;">
+        <thead class="table-light text-center">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">회원 이름</th>
+            <th scope="col">회원 이메일</th>
+            <th scope="col">회원 가입일</th>
+        </tr>
+        </thead>
 
-<br/>
-<!--인증시 사용된 객체에 대한 정보-->
-<b>Authenticated DTO:</b>
-<div sec:authorize="isAuthenticated()" sec:authentication="principal"></div>
+        <tbody class="text-center">
+        <tr th:each="member : ${members}">
+            <th scope="row" th:text="*{member.id}">id</th>
+            <td th:text="*{member.memberName}">이름</td>
+            <td th:text="*{member.email}">email</td>
+            <td th:text="*{#temporals.format(member.createdAt, 'yyyy-MM-dd HH:mm:ss')}">생성일자</td>
+        </tr>
+        </tbody>
+    </table>
 
-<br/>
-<!--인증시 사용된 객체의 Username (ID)-->
-<b>Authenticated username:</b>
-<div sec:authorize="isAuthenticated()" sec:authentication="name"></div>
-
-<br/>
-<!--객체의 권한-->
-<b>Authenticated admin role:</b>
-<div sec:authorize="isAuthenticated()" sec:authentication="principal.authorities"></div>
+</div>
 
 
 </body>

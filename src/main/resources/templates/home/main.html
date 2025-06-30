@@ -14,11 +14,9 @@
             <!-- 메뉴들 -->
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/main" class="nav-link px-2 link-secondary">Home</a></li>
-
+                <!-- 관리자로 로그인하면 로그인 페이지가 보이도록 타임리프에서는 태그에서 바로 hasRole()로 태그를 보이게 할 수 있다. -->
                 <li><a sec:authorize="hasRole('ADMIN')" href="/members/admin/dashboard" class="nav-link px-2 link-body-emphasis">관리자페이지</a></li>
-
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
+                <li><a sec:authorize="hasAnyRole('ADMIN', 'USER')" th:href="@{/members/{memberId}(memberId=${memberId})}" class="nav-link px-2 link-body-emphasis">내 정보</a></li>
             </ul>
 
             <!-- 검색 바 -->
@@ -42,22 +40,16 @@
     </div>
 </header>
 
-<div class="main-contents-container" style="height: 100vh">
+<div class="main-contents-container" style="height: 100vh" th:object="${member}">
     <div class="container px-4 py-5"><h2 class="pb-2 border-bottom">메인 페이지 입니다.</h2>
         <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
             <div class="col d-flex flex-column align-items-start gap-2">
                 <h2 class="fw-bold text-body-emphasis">
-                    Left-aligned title explaining these awesome features
-                </h2>
-                <p class="text-body-secondary" th:object="${member}">
                     [[ *{memberName} ]]님 반갑습니다.
-                    [[ ${realName} ]]
-                    로그인한 사용자: [[ ${email} ]]
+                </h2>
+                <p class="text-body-secondary" >
+                    로그인 된 main 페이지 입니다.
                 </p>
-
-                <button onclick="location.href='/'" class="btn btn-primary">홈화면</button>
-                <button onclick="location.href='/user/test1'" class="btn btn-primary">일반페이지</button>
-                <button onclick="location.href='/admin/test2'" class="btn btn-primary">관리자페이지</button>
 
             </div>
 

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -33,4 +34,9 @@ public class MemberServiceImpl implements MemberService {
         return savedMember;
     }
 
+    @Override
+    public List<Member> findAll() {
+        List<Member> allMembers = memberRepository.findAll();
+        return allMembers;
+    }
 }
