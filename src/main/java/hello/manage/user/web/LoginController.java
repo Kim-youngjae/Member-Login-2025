@@ -30,7 +30,7 @@ public class LoginController {
             loginService.login(loginDto, session);
             return ResponseEntity.ok().build();
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("아이디 또는 비밀반호를 확인해주세요");
         }
     }
 
