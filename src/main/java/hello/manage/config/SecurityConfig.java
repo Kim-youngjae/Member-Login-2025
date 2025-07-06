@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티를 활성화하고 웹 보안 설정을 구성 -> 자동으로 시큐리티 필터 체인을 생성하고 웹 보안을 활성화
-//@EnableMethodSecurity // 메서드 단위로 권한을 체그할 때 config에서 인식할 수 있도록 preauthorize같은 어노테이션 인식
+@EnableMethodSecurity // 메서드 단위로 권한을 체크할 때 config에서 인식할 수 있도록 @PreAuthorize 같은 어노테이션 인식
 public class SecurityConfig {
 
     @Bean

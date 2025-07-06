@@ -32,6 +32,9 @@ public class MemberPageController {
     @GetMapping("/admin/dashboard")
     public String goAdminDashboardPage(Authentication authentication, Model model) {
 
+        // 혹시 사용자가 url 상으로 관리자 페이지로 접근하려고 했을 떄 권한이 없다는 오류페이지를 렌더링
+        authentication.getAuthorities();
+
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         Member member = userDetails.getMember();
         model.addAttribute("memberId", member.getId());
