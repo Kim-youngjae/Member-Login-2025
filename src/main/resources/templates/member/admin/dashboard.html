@@ -49,15 +49,19 @@
             <th scope="col">회원 이름</th>
             <th scope="col">회원 이메일</th>
             <th scope="col">회원 가입일</th>
+            <th scope="col">권한</th>
         </tr>
         </thead>
 
         <tbody class="text-center">
         <tr th:each="member : ${members}">
             <th scope="row" th:text="*{member.id}">id</th>
-            <td th:text="*{member.memberName}">이름</td>
+            <td>
+                <a th:href="@{/members/{memberId}(memberId=*{member.id})}" th:text="*{member.memberName}"></a>
+            </td>
             <td th:text="*{member.email}">email</td>
             <td th:text="*{#temporals.format(member.createdAt, 'yyyy-MM-dd HH:mm:ss')}">생성일자</td>
+            <td th:text="*{member.role}"></td>
         </tr>
         </tbody>
     </table>
