@@ -20,7 +20,23 @@ public class MainController {
      * @return
      */
     @GetMapping("/")
-    public String index() {
+    public String index(Authentication authentication, Model model) {
+
+        if (authentication == null || !authentication.isAuthenticated()
+                || authentication.getPrincipal().equals("anonymousUser")) {
+            return "home/index"; // 비로그인 사용자는 index
+        }
+
+        // 로그인 된 사용자
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        Member member = userDetails.getMember();
+        model.addAttribute("member", member);
+        model.addAttribute("memberId", member.getId());
+
+        if (authentication.isAuthenticated()) {
+            return "home/main";
+        }
+
         return "home/index";
     }
 
